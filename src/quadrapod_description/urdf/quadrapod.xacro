@@ -1,0 +1,775 @@
+<?xml version="1.0" ?>
+<robot name="quadrapod" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find quadrapod_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find quadrapod_description)/urdf/quadrapod.trans" />
+<xacro:include filename="$(find quadrapod_description)/urdf/quadrapod.gazebo" />
+
+<!-- Used for fixing robot to Gazebo 'base_link'
+
+<link name="world"/>
+
+<joint name="fixed" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.5"/>
+  <parent link="world"/>
+  <child link="base_link"/>
+</joint>
+
+-->
+
+<!-- tibia tip end effector -->
+<link name="tibia_eef_1"/>
+
+<joint name="dummy_eef1" type="fixed">
+    <parent link="tibia_v3_1"/>
+    <child link="tibia_eef_1"/>
+    <origin rpy="0 0 0" xyz="0.019893 0.043227 -0.108724"/>
+</joint>
+
+<link name="tibia_eef_2"/>
+
+<joint name="dummy_eef2" type="fixed">
+    <parent link="tibia_v3_2"/>
+    <child link="tibia_eef_2"/>
+    <origin rpy="0 0 0" xyz="-0.043227 0.019893 -0.108724"/>
+</joint>
+
+<link name="tibia_eef_3"/>
+
+<joint name="dummy_eef3" type="fixed">
+    <parent link="tibia_v3_3"/>
+    <child link="tibia_eef_3"/>
+    <origin rpy="0 0 0" xyz="0.019893 -0.043227 -0.108724"/>
+</joint>
+
+<link name="tibia_eef_4"/>
+
+<joint name="dummy_eef4" type="fixed">
+    <parent link="tibia_v3_4"/>
+    <child link="tibia_eef_4"/>
+    <origin rpy="0 0 0" xyz="-0.043227 -0.019893 -0.108724"/>
+</joint>
+
+<!-- end of tibia tip end effector -->
+
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-3.131527398141724e-15 6.504656316614858e-17 0.0015874999999999993"/>
+    <mass value="0.016210624643989514"/>
+    <inertia ixx="1.8e-05" ixy="0.0" ixz="0.0" iyy="1.8e-05" iyz="-0.0" izz="3.6e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.003358172989370682 0.02244916197825437 0.017128126001392945"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1e-05" ixy="-3e-06" ixz="-0.0" iyy="1e-05" iyz="-0.0" izz="1.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.049405 -0.030313 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.049405 -0.030313 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="top_plate_v3_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.04940500000000193 -0.030313000000000093 0.0015874999999999986"/>
+    <mass value="0.02791137131716288"/>
+    <inertia ixx="2.2e-05" ixy="-0.0" ixz="-0.0" iyy="2.2e-05" iyz="-0.0" izz="4.3e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.049405 -0.030313 -0.035175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/top_plate_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.049405 -0.030313 -0.035175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/top_plate_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="coxa_v3_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.006307697166824548 0.006307697166780014 -0.02156473485261959"/>
+    <mass value="0.0059876100339638"/>
+    <inertia ixx="3e-06" ixy="0.0" ixz="-0.0" iyy="3e-06" iyz="-0.0" izz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.061602 -0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.061602 -0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_2">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.0009703775779082852 0.020061211330856032 0.005750862552334106"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="1e-06" ixz="0.0" iyy="1.2e-05" iyz="-0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.08529 -0.062663 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.08529 -0.062663 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="femur_v3_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.010665286346567868 0.019022521708455142 0.045000612902674215"/>
+    <mass value="0.017665404788512855"/>
+    <inertia ixx="1.6e-05" ixy="4e-06" ixz="0.0" iyy="1.6e-05" iyz="0.0" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.098372 -0.068673 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.098372 -0.068673 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_3">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.011246595732016501 0.016856993176747714 -0.011854636830040899"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="1e-06" ixz="1e-06" iyy="1.2e-05" iyz="1e-06" izz="8e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.098372 -0.068673 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.098372 -0.068673 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tibia_v3_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.0029676224397089113 0.02630171402651535 -0.016467855089459284"/>
+    <mass value="0.07868500125623075"/>
+    <inertia ixx="9e-05" ixy="-5e-06" ixz="2.2e-05" iyy="9e-05" iyz="2.2e-05" izz="2.2e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.108278 -0.085651 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.108278 -0.085651 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_4">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.022449161978254396 0.003358172989370682 0.017128126001392973"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1e-05" ixy="3e-06" ixz="0.0" iyy="1e-05" iyz="-0.0" izz="1.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.030313 -0.049405 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.030313 -0.049405 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="coxa_v3_2">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.006307697166780014 0.006307697166824548 -0.021564734852619536"/>
+    <mass value="0.0059876100339638"/>
+    <inertia ixx="3e-06" ixy="-0.0" ixz="0.0" iyy="3e-06" iyz="-0.0" izz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.061602 -0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.061602 -0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_5">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.020061211330856102 -0.0009703775779084656 0.005750862552334151"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="-1e-06" ixz="0.0" iyy="1.2e-05" iyz="0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.062663 -0.08529 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_5.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.062663 -0.08529 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_5.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="femur_v3_2">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.01902252170845524 -0.010665286346567895 0.045000612902674424"/>
+    <mass value="0.017665404788512855"/>
+    <inertia ixx="1.6e-05" ixy="-4e-06" ixz="-0.0" iyy="1.6e-05" iyz="0.0" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.068673 -0.098372 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.068673 -0.098372 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_6">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.01685699317674802 -0.011246595732016737 -0.011854636830040413"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="-1e-06" ixz="-1e-06" iyy="1.2e-05" iyz="1e-06" izz="8e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.068673 -0.098372 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_6.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.068673 -0.098372 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_6.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tibia_v3_2">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.026301714026515224 0.002967622439708814 -0.016467855089458826"/>
+    <mass value="0.07868500125623075"/>
+    <inertia ixx="9e-05" ixy="5e-06" ixz="-2.2e-05" iyy="9e-05" iyz="2.2e-05" izz="2.2e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.085651 -0.108278 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.085651 -0.108278 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_7">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.003357161978254433 -0.022450172989370666 0.017128126001392973"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1e-05" ixy="3e-06" ixz="-0.0" iyy="1e-05" iyz="0.0" izz="1.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.049405 0.030313 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_7.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.049405 0.030313 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_7.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="coxa_v3_3">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.006307697166780223 -0.006307697166824687 -0.021564734852620168"/>
+    <mass value="0.0059876100339638"/>
+    <inertia ixx="3e-06" ixy="-0.0" ixz="-0.0" iyy="3e-06" iyz="0.0" izz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.061602 0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.061602 0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_8">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.0009693665667916268 -0.02006222234197265 0.005750862552333385"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="-1e-06" ixz="0.0" iyy="1.2e-05" iyz="0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.08529 0.062663 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_8.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.08529 0.062663 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_8.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="femur_v3_3">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.010676478291544167 -0.0190337136534324 0.045000612902673424"/>
+    <mass value="0.017665404788512855"/>
+    <inertia ixx="1.6e-05" ixy="-4e-06" ixz="0.0" iyy="1.6e-05" iyz="-0.0" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.098372 0.068673 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.098372 0.068673 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_9">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.011247554497774204 -0.016856034410990497 -0.011855090507679161"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="-1e-06" ixz="1e-06" iyy="1.2e-05" iyz="-1e-06" izz="8e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.098372 0.068673 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_9.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.098372 0.068673 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_9.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tibia_v3_3">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.002967607245328463 -0.026301729220895284 -0.016467855089458597"/>
+    <mass value="0.07868500125623075"/>
+    <inertia ixx="9e-05" ixy="5e-06" ixz="2.2e-05" iyy="9e-05" iyz="-2.2e-05" izz="2.2e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.108278 0.085651 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.108278 0.085651 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_10">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.010960172989370826 -0.022273161978254432 0.017128126001392973"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1e-05" ixy="-3e-06" ixz="0.0" iyy="1e-05" iyz="0.0" izz="1.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.041803 0.030489 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_10.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.041803 0.030489 -0.003175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_10.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="coxa_v3_4">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.006307697166824798 -0.006307697166780028 -0.021564734852619477"/>
+    <mass value="0.0059876100339638"/>
+    <inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.061602 0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.061602 0.061602 -0.040175"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/coxa_v3_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_11">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.020062222341972455 0.0009693665667922235 0.005750862552334141"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="1e-06" ixz="0.0" iyy="1.2e-05" iyz="-0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.062663 0.08529 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.062663 0.08529 -0.01205"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="femur_v3_4">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.01903371365343258 0.010676478291544986 0.045000612902674555"/>
+    <mass value="0.017665404788512855"/>
+    <inertia ixx="1.6e-05" ixy="4e-06" ixz="-0.0" iyy="1.6e-05" iyz="-0.0" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.068673 0.098372 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.068673 0.098372 -0.0053"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/femur_v3_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax12a_v2_12">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.016856034410990803 0.011247554497773982 -0.011855090507679189"/>
+    <mass value="0.04556894168228744"/>
+    <inertia ixx="1.2e-05" ixy="1e-06" ixz="-1e-06" iyy="1.2e-05" iyz="-1e-06" izz="8e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.068673 0.098372 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="glossy_black"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.068673 0.098372 -0.0953"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/ax12a_v2_12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="tibia_v3_4">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.026301729220895548 -0.0029676072453285463 -0.016467855089458798"/>
+    <mass value="0.07868500125623075"/>
+    <inertia ixx="9e-05" ixy="-5e-06" ixz="-2.2e-05" iyy="9e-05" iyz="-2.2e-05" izz="2.2e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.085651 0.108278 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="powder_coat_dark_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.085651 0.108278 -0.063699"/>
+    <geometry>
+      <mesh filename="package://quadrapod_description/meshes/tibia_v3_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid1" type="fixed">
+  <origin rpy="0 0 0" xyz="0.049405 0.030313 0.003175"/>
+  <parent link="base_link"/>
+  <child link="ax12a_v2_1"/>
+</joint>
+
+<joint name="Rigid2" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.032"/>
+  <parent link="ax12a_v2_1"/>
+  <child link="top_plate_v3_1"/>
+</joint>
+
+<joint name="coxa1" type="revolute">
+  <origin rpy="0 0 0" xyz="0.012197 0.031289 0.037"/>
+  <parent link="ax12a_v2_1"/>
+  <child link="coxa_v3_1"/>
+  <axis xyz="-0.0 -0.0 1.0"/>
+  <limit effort="100" lower="-1.48353" upper="1.48353" velocity="100"/>
+</joint>
+
+<joint name="Rigid4" type="fixed">
+  <origin rpy="0 0 0" xyz="0.023688 0.001061 -0.028125"/>
+  <parent link="coxa_v3_1"/>
+  <child link="ax12a_v2_2"/>
+</joint>
+
+<joint name="femur1" type="revolute">
+  <origin rpy="0 0 0" xyz="0.013082 0.00601 -0.00675"/>
+  <parent link="ax12a_v2_2"/>
+  <child link="femur_v3_1"/>
+  <axis xyz="0.707107 -0.707107 0.0"/>
+  <limit effort="100" lower="-4.101524" upper="1.308997" velocity="100"/>
+</joint>
+
+<joint name="tibia1" type="revolute">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.09"/>
+  <parent link="femur_v3_1"/>
+  <child link="ax12a_v2_3"/>
+  <axis xyz="0.707107 -0.707107 0.0"/>
+  <limit effort="100" lower="-0.174533" upper="5.148721" velocity="100"/>
+</joint>
+
+<joint name="Rigid7" type="fixed">
+  <origin rpy="0 0 0" xyz="0.009906 0.016978 -0.031601"/>
+  <parent link="ax12a_v2_3"/>
+  <child link="tibia_v3_1"/>
+</joint>
+
+<joint name="Rigid8" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.030313 0.049405 0.003175"/>
+  <parent link="base_link"/>
+  <child link="ax12a_v2_4"/>
+</joint>
+
+<joint name="coxa2" type="revolute">
+  <origin rpy="0 0 0" xyz="-0.031289 0.012197 0.037"/>
+  <parent link="ax12a_v2_4"/>
+  <child link="coxa_v3_2"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit effort="100" lower="-1.48353" upper="1.48353" velocity="100"/>
+</joint>
+
+<joint name="Rigid10" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.001061 0.023688 -0.028125"/>
+  <parent link="coxa_v3_2"/>
+  <child link="ax12a_v2_5"/>
+</joint>
+
+<joint name="femur2" type="revolute">
+  <origin rpy="0 0 0" xyz="-0.00601 0.013082 -0.00675"/>
+  <parent link="ax12a_v2_5"/>
+  <child link="femur_v3_2"/>
+  <axis xyz="0.707107 0.707107 0.0"/>
+  <limit effort="100" lower="-4.101524" upper="0.523599" velocity="100"/>
+</joint>
+
+<joint name="tibia2" type="revolute">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.09"/>
+  <parent link="femur_v3_2"/>
+  <child link="ax12a_v2_6"/>
+  <axis xyz="0.707107 0.707107 0.0"/>
+  <limit effort="100" lower="-0.174533" upper="5.148721" velocity="100"/>
+</joint>
+
+<joint name="Rigid13" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.016978 0.009906 -0.031601"/>
+  <parent link="ax12a_v2_6"/>
+  <child link="tibia_v3_2"/>
+</joint>
+
+<joint name="Rigid14" type="fixed">
+  <origin rpy="0 0 0" xyz="0.049405 -0.030313 0.003175"/>
+  <parent link="base_link"/>
+  <child link="ax12a_v2_7"/>
+</joint>
+
+<joint name="coxa3" type="revolute">
+  <origin rpy="0 0 0" xyz="0.012197 -0.031289 0.037"/>
+  <parent link="ax12a_v2_7"/>
+  <child link="coxa_v3_3"/>
+  <axis xyz="-0.0 0.0 1.0"/>
+  <limit effort="100" lower="-1.48353" upper="1.48353" velocity="100"/>
+</joint>
+
+<joint name="Rigid16" type="fixed">
+  <origin rpy="0 0 0" xyz="0.023688 -0.001061 -0.028125"/>
+  <parent link="coxa_v3_3"/>
+  <child link="ax12a_v2_8"/>
+</joint>
+
+<joint name="femur3" type="revolute">
+  <origin rpy="0 0 0" xyz="0.013082 -0.00601 -0.00675"/>
+  <parent link="ax12a_v2_8"/>
+  <child link="femur_v3_3"/>
+  <axis xyz="0.707107 0.707107 0.0"/>
+  <limit effort="100" lower="-0.523599" upper="4.014257" velocity="100"/>
+</joint>
+
+<joint name="tibia3" type="revolute">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.09"/>
+  <parent link="femur_v3_3"/>
+  <child link="ax12a_v2_9"/>
+  <axis xyz="-0.707107 -0.707107 -0.0"/>
+  <limit effort="100" lower="-0.174533" upper="5.148721" velocity="100"/>
+</joint>
+
+<joint name="Rigid19" type="fixed">
+  <origin rpy="0 0 0" xyz="0.009906 -0.016978 -0.031601"/>
+  <parent link="ax12a_v2_9"/>
+  <child link="tibia_v3_3"/>
+</joint>
+
+<joint name="Rigid20" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.041803 -0.030489 0.003175"/>
+  <parent link="base_link"/>
+  <child link="ax12a_v2_10"/>
+</joint>
+
+<joint name="coxa4" type="revolute">
+  <origin rpy="0 0 0" xyz="-0.019799 -0.031113 0.037"/>
+  <parent link="ax12a_v2_10"/>
+  <child link="coxa_v3_4"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit effort="100" lower="-1.48353" upper="1.48353" velocity="100"/>
+</joint>
+
+<joint name="Rigid22" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.001061 -0.023688 -0.028125"/>
+  <parent link="coxa_v3_4"/>
+  <child link="ax12a_v2_11"/>
+</joint>
+
+<joint name="femur4" type="revolute">
+  <origin rpy="0 0 0" xyz="-0.00601 -0.013082 -0.00675"/>
+  <parent link="ax12a_v2_11"/>
+  <child link="femur_v3_4"/>
+  <axis xyz="0.707107 -0.707107 0.0"/>
+  <limit effort="100" lower="-0.523599" upper="4.014257" velocity="100"/>
+</joint>
+
+<joint name="tibia4" type="revolute">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.09"/>
+  <parent link="femur_v3_4"/>
+  <child link="ax12a_v2_12"/>
+  <axis xyz="-0.707107 0.707107 -0.0"/>
+  <limit effort="100" lower="-0.174533" upper="5.148721" velocity="100"/>
+</joint>
+
+<joint name="Rigid25" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.016978 -0.009906 -0.031601"/>
+  <parent link="ax12a_v2_12"/>
+  <child link="tibia_v3_4"/>
+</joint>
+
+</robot>

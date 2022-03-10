@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<library path="lib/libquadrapod_leg_1_moveit_ikfast_plugin">
+  <class name="quadrapod_leg_1/IKFastKinematicsPlugin" type="quadrapod_leg_1::IKFastKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
+    <description>IKFast61 plugin for closed-form kinematics of quadrapod leg_1</description>
+  </class>
+</library>

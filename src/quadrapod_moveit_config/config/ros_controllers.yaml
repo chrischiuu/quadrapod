@@ -1,0 +1,88 @@
+leg_1_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - coxa1
+    - femur1
+    - tibia1
+  gains:
+    coxa1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    femur1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    tibia1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+leg_2_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - coxa2
+    - femur2
+    - tibia2
+  gains:
+    coxa2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    femur2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    tibia2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+leg_3_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - coxa3
+    - femur3
+    - tibia3
+  gains:
+    coxa3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    femur3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    tibia3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+leg_4_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - coxa4
+    - femur4
+    - tibia4
+  gains:
+    coxa4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    femur4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    tibia4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1

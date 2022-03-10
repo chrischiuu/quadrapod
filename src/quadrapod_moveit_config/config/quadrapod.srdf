@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="quadrapod">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="leg_1">
+        <chain base_link="ax12a_v2_1" tip_link="tibia_eef_1"/>
+    </group>
+    <group name="leg_2">
+        <chain base_link="ax12a_v2_4" tip_link="tibia_eef_2"/>
+    </group>
+    <group name="leg_3">
+        <chain base_link="ax12a_v2_7" tip_link="tibia_eef_3"/>
+    </group>
+    <group name="leg_4">
+        <chain base_link="ax12a_v2_10" tip_link="tibia_eef_4"/>
+    </group>
+    <group name="eef_1">
+        <joint name="dummy_eef1"/>
+    </group>
+    <group name="eef_2">
+        <joint name="dummy_eef2"/>
+    </group>
+    <group name="eef_3">
+        <joint name="dummy_eef3"/>
+    </group>
+    <group name="eef_4">
+        <joint name="dummy_eef4"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="default" group="leg_1">
+        <joint name="coxa1" value="0"/>
+        <joint name="femur1" value="0"/>
+        <joint name="tibia1" value="0"/>
+    </group_state>
+    <group_state name="default" group="leg_2">
+        <joint name="coxa2" value="0"/>
+        <joint name="femur2" value="0"/>
+        <joint name="tibia2" value="0"/>
+    </group_state>
+    <group_state name="default" group="leg_3">
+        <joint name="coxa3" value="0"/>
+        <joint name="femur3" value="0"/>
+        <joint name="tibia3" value="0"/>
+    </group_state>
+    <group_state name="deafult" group="leg_4">
+        <joint name="coxa4" value="0"/>
+        <joint name="femur4" value="0"/>
+        <joint name="tibia4" value="0"/>
+    </group_state>
+    <group_state name="extend" group="leg_1">
+        <joint name="coxa1" value="0"/>
+        <joint name="femur1" value="-1.57"/>
+        <joint name="tibia1" value="2.36"/>
+    </group_state>
+    <group_state name="extend" group="leg_2">
+        <joint name="coxa2" value="0"/>
+        <joint name="femur2" value="-1.57"/>
+        <joint name="tibia2" value="2.36"/>
+    </group_state>
+    <group_state name="extend" group="leg_3">
+        <joint name="coxa3" value="0"/>
+        <joint name="femur3" value="1.57"/>
+        <joint name="tibia3" value="2.36"/>
+    </group_state>
+    <group_state name="extend" group="leg_4">
+        <joint name="coxa4" value="0"/>
+        <joint name="femur4" value="1.57"/>
+        <joint name="tibia4" value="2.36"/>
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="eef_1" parent_link="tibia_eef_1" group="eef_1" parent_group="leg_1"/>
+    <end_effector name="eef_2" parent_link="tibia_eef_2" group="eef_2" parent_group="leg_2"/>
+    <end_effector name="eef_3" parent_link="tibia_eef_3" group="eef_3" parent_group="leg_3"/>
+    <end_effector name="eef_4" parent_link="tibia_eef_4" group="eef_4" parent_group="leg_4"/>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="fixed_frame" type="fixed" parent_frame="world" child_link="base_link"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_10" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_11" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_12" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_5" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_6" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_1" link2="coxa_v3_1" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_1" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_1" link2="top_plate_v3_1" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_12" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_5" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_6" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_10" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="coxa_v3_4" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_10" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_10" link2="top_plate_v3_1" reason="Default"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_12" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_5" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_6" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="coxa_v3_4" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_11" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_11" link2="femur_v3_4" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_11" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="ax12a_v2_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="ax12a_v2_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="ax12a_v2_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="ax12a_v2_5" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_12" link2="femur_v3_4" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_12" link2="tibia_v3_4" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_12" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_5" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_6" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="coxa_v3_1" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_2" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="femur_v3_1" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_2" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_2" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_3" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_3" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_3" link2="femur_v3_1" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_3" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_3" link2="tibia_v3_1" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_4" link2="ax12a_v2_6" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_4" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="coxa_v3_2" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_4" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_4" link2="top_plate_v3_1" reason="Default"/>
+    <disable_collisions link1="ax12a_v2_5" link2="ax12a_v2_6" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="coxa_v3_2" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_5" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="femur_v3_2" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_5" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_5" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="ax12a_v2_7" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="ax12a_v2_8" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="femur_v3_2" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_6" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_6" link2="tibia_v3_2" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_6" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_7" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="coxa_v3_3" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_7" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_7" link2="top_plate_v3_1" reason="Default"/>
+    <disable_collisions link1="ax12a_v2_8" link2="ax12a_v2_9" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="coxa_v3_3" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_8" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="femur_v3_3" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_8" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_8" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="base_link" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="ax12a_v2_9" link2="femur_v3_3" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_9" link2="tibia_v3_3" reason="Adjacent"/>
+    <disable_collisions link1="ax12a_v2_9" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="coxa_v3_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="base_link" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="base_link" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="base_link" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="coxa_v3_2" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_1" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="coxa_v3_3" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_2" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_3" link2="coxa_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_3" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_3" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="coxa_v3_3" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="coxa_v3_3" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_3" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_4" link2="femur_v3_1" reason="Never"/>
+    <disable_collisions link1="coxa_v3_4" link2="femur_v3_2" reason="Never"/>
+    <disable_collisions link1="coxa_v3_4" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="coxa_v3_4" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="coxa_v3_4" link2="top_plate_v3_1" reason="Never"/>
+    <disable_collisions link1="femur_v3_1" link2="femur_v3_4" reason="Never"/>
+    <disable_collisions link1="femur_v3_1" link2="tibia_v3_1" reason="Never"/>
+    <disable_collisions link1="femur_v3_2" link2="femur_v3_3" reason="Never"/>
+    <disable_collisions link1="femur_v3_2" link2="tibia_v3_2" reason="Never"/>
+    <disable_collisions link1="femur_v3_3" link2="tibia_v3_3" reason="Never"/>
+    <disable_collisions link1="femur_v3_4" link2="tibia_v3_4" reason="Never"/>
+</robot>

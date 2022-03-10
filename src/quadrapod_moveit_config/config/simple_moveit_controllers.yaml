@@ -1,0 +1,33 @@
+controller_list:
+  - name: leg_1_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - coxa1
+      - femur1
+      - tibia1
+  - name: leg_2_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - coxa2
+      - femur2
+      - tibia2
+  - name: leg_3_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - coxa3
+      - femur3
+      - tibia3
+  - name: leg_4_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - coxa4
+      - femur4
+      - tibia4

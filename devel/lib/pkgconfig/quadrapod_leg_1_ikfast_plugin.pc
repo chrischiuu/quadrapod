@@ -1,0 +1,8 @@
+prefix=/home/chris/catkin_ws/devel
+
+Name: quadrapod_leg_1_ikfast_plugin
+Description: Description of quadrapod_leg_1_ikfast_plugin
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

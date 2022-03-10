@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: quadrapod_description
+    relative_path: urdf/quadrapod.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/quadrapod.srdf
+  CONFIG:
+    author_name: Chris Chiu
+    author_email: chris.chiu41@gmail.com
+    generated_timestamp: 1646101909

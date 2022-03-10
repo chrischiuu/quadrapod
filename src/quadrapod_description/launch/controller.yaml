@@ -1,0 +1,55 @@
+quadrapod:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  # Position Controllers --------------------------------------
+  coxa1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: coxa1
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  femur1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: femur1
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  tibia1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: tibia1
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  coxa2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: coxa2
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  femur2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: femur2
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  tibia2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: tibia2
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  coxa3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: coxa3
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  femur3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: femur3
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  tibia3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: tibia3
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  coxa4_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: coxa4
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  femur4_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: femur4
+    pid: {p: 2.0, i: 0.5, d: 0.1}
+  tibia4_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: tibia4
+    pid: {p: 2.0, i: 0.5, d: 0.1}

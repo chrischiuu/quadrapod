@@ -1,0 +1,22 @@
+<package>
+  <name>quadrapod_gazebo</name>
+  <version>0.1.0</version>
+  <description>quadrapod_gazebo</description>
+  <maintainer email="chris.chiu41@gmail.com">Chris Chiu</maintainer>
+
+  <license>BSD</license>
+
+  <author email="chris.chiu41@gmail.com">Chris Chiu</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>gazebo_plugins</run_depend>
+  <run_depend>gazebo_ros</run_depend>
+  <run_depend>gazebo_ros_control</run_depend>
+  <run_depend>quadrapod_control</run_depend>
+  <run_depend>quadrapod_description</run_depend>
+  <run_depend>xacro</run_depend>
+
+  <export>
+  </export>
+</package>

@@ -1,0 +1,19 @@
+<launch>
+
+<rosparam file="$(find quadrapod_description)/launch/controller.yaml" command="load"/>
+<node
+  name="controller_spawner"
+  ns="quadrapod"
+  output="screen"
+  pkg="controller_manager"
+  respawn="false" type="spawner"
+  args="coxa1_position_controller femur1_position_controller tibia1_position_controller
+        coxa2_position_controller femur2_position_controller tibia2_position_controller
+        coxa3_position_controller femur3_position_controller tibia3_position_controller
+        coxa4_position_controller femur4_position_controller tibia4_position_controller
+        joint_state_controller " />
+<node name="robot_state_publisher" output="screen" pkg="robot_state_publisher" respawn="false" type="robot_state_publisher">
+  <remap from="/joint_states" to="/quadrapod/joint_states"/>
+</node>
+
+</launch>

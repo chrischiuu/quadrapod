@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>quadrapod_control</name>
+  <version>0.0.0</version>
+  <description>The quadrapod_control package</description>
+
+  <maintainer email="chris.chiu41@gmail.com">Chris Chiu</maintainer>
+
+  <license>BSD</license>
+
+  <author email="chris.chiu41@gmail.com">Chris Chiu</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>controller_manager</run_depend>
+  <run_depend>joint_state_controller</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+
+  <run_depend>rqt_gui</run_depend>
+  <run_depend>effort_controllers</run_depend>
+
+
+  <export>
+  </export>
+
+</package>

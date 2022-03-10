@@ -1,0 +1,2 @@
+moveit_tutorials:quadrapod_description:quadrapod_leg_1_ikfast_plugin:quadrapod_moveit_config
+-DCATKIN_DEVEL_PREFIX=/home/chris/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/chris/catkin_ws/install -G Unix Makefiles
